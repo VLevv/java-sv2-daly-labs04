@@ -12,17 +12,23 @@ public class Stock {
     public double maxProfit() {
         double min = prices.get(0);
         double max = 0;
+        double biggestDiff=0;
         for (double d :
                 prices) {
             if (min > d) {
                 min = d;
+                max = min;
+                for(int i = prices.indexOf(min);i< prices.size();++i){
+                    if(max<prices.get(i)){
+                        max=prices.get(i);
+                    }
+                }
+                if(biggestDiff<max-min){
+                    biggestDiff=max-min;
+                }
             }
         }
-        for (int i = prices.indexOf(min);i<prices.size();++i) {
-            if (max < prices.get(i)) {
-                max = prices.get(i);
-            }
-        }
-        return max-min;
+
+        return biggestDiff;
     }
 }
